@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">IoT_Project</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_Setting">Setting</string>
+    <string name="title_Post">Post</string>
+</resources>
