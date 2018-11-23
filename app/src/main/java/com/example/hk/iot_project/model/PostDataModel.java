@@ -18,20 +18,20 @@ public class PostDataModel {
     private MyHandler myHandler;
     private PostThread postThread;
 
-    public void GetDataModel() {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        try {
-            PostSocket = new Socket(ip, port);
-            socketOut = new PrintWriter(PostSocket.getOutputStream(), true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        myHandler = new MyHandler();
-        postThread = new PostThread();
-        postThread.start();
+    public PostDataModel() {
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
+//
+//        try {
+//            PostSocket = new Socket(ip, port);
+//            socketOut = new PrintWriter(PostSocket.getOutputStream(), true);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        myHandler = new MyHandler();
+//        postThread = new PostThread();
+//        postThread.start();
     }
 
     class PostThread extends Thread {

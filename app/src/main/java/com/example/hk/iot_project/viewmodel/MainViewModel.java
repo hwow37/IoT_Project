@@ -2,11 +2,13 @@ package com.example.hk.iot_project.viewmodel;
 
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableArrayMap;
+import android.util.Log;
 
 import com.example.hk.iot_project.model.GetDataModel;
 import com.example.hk.iot_project.model.PostDataModel;
 
-public class MainViewModel extends ViewModel {
+
+public class MainViewModel extends ViewModel{
     // TODO: Implement the ViewModel
     private GetDataModel getDataModel;
     private PostDataModel postDataModel;
@@ -15,14 +17,25 @@ public class MainViewModel extends ViewModel {
     public final ObservableArrayMap<String, String> postData = new ObservableArrayMap<>();
 
     public MainViewModel() {
+        Log.d("onMainViewModel", "iot complete");
+
         getDataModel = new GetDataModel();
         postDataModel = new PostDataModel();
+        setGetDataModel();
     }
 
     public void onCreate() { }
     public void onPause() { }
     public void onResume() { }
     public void onDestroy() { }
+
+    public void setGetDataModel(){
+        Log.d("onMainViewModel", "in setGetDataModel");
+        if(getDataModel.isData()){
+            String str = getDataModel.getData();
+            Log.d("onMainViewModel", "this data is : "+str);
+        }
+    }
 
     /**
      * An Action, callable by the view.  This action will pass a message to the model
