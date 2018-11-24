@@ -1,18 +1,10 @@
 package com.example.hk.iot_project.view;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.hk.iot_project.R;
-import com.example.hk.iot_project.viewmodel.MainViewModel;
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
@@ -23,9 +15,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 
-public class PostFragment extends Fragment {
-    private MainViewModel mViewModel;
-    public View view;
+public class ChartActivity extends AppCompatActivity {
 
     // 그래프 작성
     private LineChart lineChart;
@@ -33,34 +23,25 @@ public class PostFragment extends Fragment {
     private LineDataSet lineDataSet;
     private XAxis xAxis;
     private YAxis yLAxis;
+    private YAxis yRAxis;
     private LineData lineData;
 
-    public static PostFragment newInstance() {
-        return new PostFragment();
-    }
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.main_fragment, container, false);
-        lineChart = view.findViewById(R.id.chart);
-        return view;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.chart_activity);
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        lineChart = findViewById(R.id.chart);
 
         entries = new ArrayList<>();
-        entries.add(new Entry(1, 1));
-        entries.add(new Entry(2, 2));
-        entries.add(new Entry(3, 0));
-        entries.add(new Entry(4, 4));
-        entries.add(new Entry(5, 3));
+        entries.add(new Entry(1, 25));
+        entries.add(new Entry(2, 26));
+        entries.add(new Entry(3, 28));
+        entries.add(new Entry(4, 30));
+        entries.add(new Entry(5, 29));
+        entries.add(new Entry(6, 28));
 
-        lineDataSet = new LineDataSet(entries, "속성명1");
+        lineDataSet = new LineDataSet(entries, "최근 1시간동안의 10분간격 온도 변화");
         lineDataSet.setLineWidth(2);
         lineDataSet.setCircleRadius(6);
         lineDataSet.setCircleColor(Color.parseColor("#FFA1B4DC"));
@@ -72,32 +53,32 @@ public class PostFragment extends Fragment {
         lineDataSet.setDrawHighlightIndicators(false);
         lineDataSet.setDrawValues(false);
 
+        lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
 
         xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextColor(Color.BLACK);
+        xAxis.setXOffset(5);
         xAxis.enableGridDashedLine(8, 24, 0);
 
         yLAxis = lineChart.getAxisLeft();
         yLAxis.setTextColor(Color.BLACK);
 
-        YAxis yRAxis = lineChart.getAxisRight();
+        yRAxis = lineChart.getAxisRight();
         yRAxis.setDrawLabels(false);
         yRAxis.setDrawAxisLine(false);
         yRAxis.setDrawGridLines(false);
 
         Description description = new Description();
         description.setText("");
-        /*dataset.setDrawCubic(true); //선 둥글게 만들기
-        dataset.setDrawFilled(true); //그래프 밑부분 색칠*/
 
+        lineChart.getXAxis().setDrawLabels(false);
         lineChart.setDoubleTapToZoomEnabled(false);
         lineChart.setDrawGridBackground(false);
         lineChart.setDescription(description);
-        lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
+//        lineChart.animateX(3000, Easing.EasingOption.EaseInCubic);
         lineChart.invalidate();
-        // TODO: Use the ViewModel
     }
 }

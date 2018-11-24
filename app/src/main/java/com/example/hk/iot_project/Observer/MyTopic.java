@@ -13,16 +13,17 @@ public class MyTopic implements Subject {
     public MyTopic(){
         this.observers=new ArrayList<>();
     }
+
     @Override
-    public void register(rx.Observer obj) {
+    public void register(Observer obj) {
         if(obj == null) throw new NullPointerException("Null Observer");
         synchronized (MUTEX) {
-            if(!observers.contains(obj)) observers.add((Observer) obj);
+            if(!observers.contains(obj)) observers.add(obj);
         }
     }
 
     @Override
-    public void unregister(rx.Observer obj) {
+    public void unregister(Observer obj) {
         synchronized (MUTEX) {
             observers.remove(obj);
         }
@@ -41,12 +42,11 @@ public class MyTopic implements Subject {
         for (Observer obj : observersLocal) {
             obj.update();
         }
-
     }
 
 
     @Override
-    public Object getUpdate(rx.Observer obj) {
+    public Object getUpdate(Observer obj) {
         return this.message;
     }
 

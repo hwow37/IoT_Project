@@ -1,7 +1,5 @@
 package com.example.hk.iot_project.Observer;
 
-import rx.Observer;
-
 public interface Subject {
 
     //methods to register and unregister observers

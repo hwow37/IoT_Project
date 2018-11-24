@@ -10,7 +10,7 @@ public class MyTopicSubscriber implements Observer {
     }
     @Override
     public void update() {
-        String msg = (String) topic.getUpdate((rx.Observer) this);
+        String msg = (String) topic.getUpdate( this);
         if(msg == null){
             System.out.println(name+":: No new message");
         }else

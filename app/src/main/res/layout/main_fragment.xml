@@ -14,26 +14,191 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         tools:context=".view.MainFragment">
 
-        <TextView
-            android:id="@+id/getDataMessage"
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_Top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NoData"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="10dp" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_playingIs"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/onplaying"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_Top"
+            app:layout_constraintVertical_bias="0" />
 
         <TextView
-            android:id="@+id/mainMessage"
+            android:id="@+id/tv_playorsleep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MainFragment"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="onPlaying..."
+            android:textColor="#000000"
+            android:textSize="25dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_playingIs"
+            app:layout_constraintTop_toTopOf="@id/img_playingIs" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_brights"
+            android:layout_width="66dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/bright"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_Top"
+            app:layout_constraintVertical_bias="0.15" />
+
+        <TextView
+            android:id="@+id/tv_brights"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="85%"
+            android:textColor="#000000"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_brights"
+            app:layout_constraintTop_toTopOf="@id/img_brights" />
+
+        <TextView
+            android:id="@+id/tv_status_brights"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="3dp"
+            android:text="낮의 밝기 입니다."
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_brights"
+            app:layout_constraintTop_toBottomOf="@id/tv_brights" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_wind"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/wind"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_Top"
+            app:layout_constraintVertical_bias="0.38" />
+
+        <TextView
+            android:id="@+id/tv_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="18dp"
+            android:text="환기 중 입니다."
+            android:textColor="#000000"
+            android:textSize="18dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_wind"
+            app:layout_constraintTop_toTopOf="@id/img_wind" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_temperature"
+            android:layout_width="66dp"
+            android:layout_height="105dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/temperature"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_Top"
+            app:layout_constraintVertical_bias="0.63" />
+
+        <TextView
+            android:id="@+id/tv_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="3dp"
+            android:text="28℃"
+            android:textColor="#000000"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_temperature"
+            app:layout_constraintTop_toTopOf="@id/img_temperature" />
+
+        <TextView
+            android:id="@+id/tv_status_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="3dp"
+            android:text="적정 온도입니다."
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_temperature"
+            app:layout_constraintTop_toBottomOf="@id/tv_temperature" />
+
+        <TextView
+            android:id="@+id/tv_status_todo_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="3dp"
+            android:text="특별한 조치가 필요하지 않습니다."
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_temperature"
+            app:layout_constraintTop_toBottomOf="@id/tv_status_temperature" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_humidity"
+            android:layout_width="66dp"
+            android:layout_height="105dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/humidity"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_Top"
+            app:layout_constraintVertical_bias="0.94" />
+
+
+        <TextView
+            android:id="@+id/tv_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="3dp"
+            android:text="70%"
+            android:textColor="#000000"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_humidity"
+            app:layout_constraintTop_toTopOf="@id/img_humidity" />
+
+        <TextView
+            android:id="@+id/tv_status_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="3dp"
+            android:text="적정 습도입니다."
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_temperature"
+            app:layout_constraintTop_toBottomOf="@id/tv_humidity" />
+
+        <TextView
+            android:id="@+id/tv_status_todo_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="3dp"
+            android:text="곧 습도 조절이 필요할 수 있습니다."
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_temperature"
+            app:layout_constraintTop_toBottomOf="@id/tv_status_humidity" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"

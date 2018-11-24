@@ -35,15 +35,17 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        Log.d("onMainFragment", "iot complete1");
         view = inflater.inflate(R.layout.main_fragment, container, false);
 
-        textView = view.findViewById(R.id.getDataMessage);
+        textView = view.findViewById(R.id.tv_playorsleep);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.d("onMainFragment", "iot complete2");
 
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         // TODO: Use the ViewModel

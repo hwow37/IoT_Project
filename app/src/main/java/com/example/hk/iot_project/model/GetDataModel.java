@@ -1,18 +1,11 @@
 package com.example.hk.iot_project.model;
 
-import android.os.Handler;
-import android.os.Message;
-import android.os.StrictMode;
 import android.util.Log;
-import android.widget.TextView;
-
-import com.example.hk.iot_project.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.Socket;
 
 import rx.Observable;
