@@ -5,13 +5,11 @@ import android.databinding.ObservableArrayMap;
 import android.util.Log;
 
 import com.example.hk.iot_project.model.GetDataModel;
-import com.example.hk.iot_project.model.PostDataModel;
 
 
 public class MainViewModel extends ViewModel{
     // TODO: Implement the ViewModel
     private GetDataModel getDataModel;
-    private PostDataModel postDataModel;
 
     public final ObservableArrayMap<String, String> getData = new ObservableArrayMap<>();
     public final ObservableArrayMap<String, String> postData = new ObservableArrayMap<>();
@@ -20,7 +18,6 @@ public class MainViewModel extends ViewModel{
         Log.d("onMainViewModel", "iot complete");
 
         getDataModel = new GetDataModel();
-        postDataModel = new PostDataModel();
         setGetDataModel();
     }
 

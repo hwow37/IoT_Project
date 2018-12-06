@@ -11,9 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hk.iot_project.R;
-import com.github.mikephil.charting.charts.Chart;
-
-import java.util.MissingFormatArgumentException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private int naviStatus = 0;
 
     private String temperatureStr = "05354231328465421351";
+    private String humidityStr = "22256648328465421351";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,10 +44,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_Post:
                     Intent intent = new Intent(MainActivity.this,ChartActivity.class);
+                    intent.putExtra("temperatureStr",temperatureStr);
+                    intent.putExtra("humidityStr",humidityStr);
                     startActivity(intent);
-//                    getSupportFragmentManager().beginTransaction()
-//                            .replace(R.id.container, PostFragment.newInstance())
-//                            .commitNow();
                     return true;
             }
             return false;

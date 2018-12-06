@@ -18,7 +18,7 @@
         tools:context=".view.SettingFragment">
 
         <android.support.constraint.Guideline
-            android:id="@+id/guideline_Top"
+            android:id="@+id/guideline_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -29,58 +29,133 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="50dp" />
+            app:layout_constraintGuide_begin="10dp" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="10dp" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/img_sleeptime"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:src="@drawable/sleeptime"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintLeft_toLeftOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/guideline_Top"
+            app:layout_constraintTop_toTopOf="@id/guideline_top"
             app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/tv_sleeptime_range"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="3dp"
+            android:text="시  ~"
+            android:textColor="#000000"
+            android:textSize="28dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_sleeptime"
+            app:layout_constraintTop_toTopOf="@id/img_sleeptime" />
+
+        <EditText
+            android:id="@+id/ev_sleeptime_min"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="3dp"
+            android:textColor="#000000"
+            android:hint="22"
+            android:textColorHint="#AAAAAA"
+            android:textSize="24dp"
+            app:layout_constraintRight_toLeftOf="@+id/tv_sleeptime_range"
+            app:layout_constraintTop_toTopOf="@id/img_sleeptime" />
+
+        <TextView
+            android:id="@+id/tv_sleeptime_instruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취침 시간을 정해주십시오."
+            android:textColor="#333333"
+            android:textSize="15dp"
+            app:layout_constraintLeft_toLeftOf="@+id/ev_sleeptime_min"
+            app:layout_constraintTop_toBottomOf="@id/ev_sleeptime_min" />
+
+        <EditText
+            android:id="@+id/ev_sleeptime_max"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="18dp"
+            android:textColor="#000000"
+            android:hint="05"
+            android:textColorHint="#AAAAAA"
+            android:textSize="24dp"
+            app:layout_constraintLeft_toRightOf="@+id/tv_sleeptime_range"
+            app:layout_constraintTop_toTopOf="@id/img_sleeptime" />
+
+        <TextView
+            android:id="@+id/tv_sleeptime_end"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="3dp"
+            android:text="시"
+            android:textColor="#000000"
+            android:textSize="28dp"
+            app:layout_constraintLeft_toRightOf="@+id/tv_sleeptime_range"
+            app:layout_constraintTop_toTopOf="@id/img_sleeptime" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/img_brights"
             android:layout_width="66dp"
             android:layout_height="84dp"
-            android:layout_marginStart="10dp"
             android:src="@drawable/bright"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintLeft_toLeftOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/guideline_Top"
+            app:layout_constraintTop_toTopOf="@id/guideline_top"
             app:layout_constraintVertical_bias="0.15" />
-
-        <Switch
-            android:id="@+id/sw_brights"
-            android:layout_width="51dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="25dp"
-            android:theme="@style/SCBSwitch"
-            android:checked="true"
-            app:layout_constraintRight_toLeftOf="@+id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/img_brights" />
 
         <SeekBar
             android:id="@+id/sbar_brights"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
             android:max="3"
             android:progress="2"
             android:theme="@style/MySeekBar"
             app:layout_constraintLeft_toRightOf="@+id/img_brights"
             app:layout_constraintTop_toTopOf="@id/img_brights" />
 
+        <Switch
+            android:id="@+id/sw_brights"
+            android:layout_width="51dp"
+            android:layout_height="35dp"
+            android:checked="true"
+            android:theme="@style/SCBSwitch"
+            app:layout_constraintRight_toLeftOf="@+id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@id/sbar_brights" />
+
+        <TextView
+            android:id="@+id/tv_set_brights"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="5dp"
+            android:text="조명 끄기/켜기"
+            android:textColor="#222222"
+            android:textSize="12dp"
+            app:layout_constraintRight_toLeftOf="@id/sw_brights"
+            app:layout_constraintTop_toTopOf="@id/sw_brights" />
+
         <TextView
             android:id="@+id/tv_brights_power"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="8dp"
             android:text="2단계"
             android:textColor="#000000"
@@ -92,22 +167,11 @@
             android:id="@+id/img_wind"
             android:layout_width="66dp"
             android:layout_height="66dp"
-            android:layout_marginStart="10dp"
             android:src="@drawable/wind"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintLeft_toLeftOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/guideline_Top"
+            app:layout_constraintTop_toTopOf="@id/guideline_top"
             app:layout_constraintVertical_bias="0.38" />
-
-        <Switch
-            android:id="@+id/sw_wind"
-            android:layout_width="51dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="16dp"
-            android:theme="@style/SCBSwitch"
-            android:checked="true"
-            app:layout_constraintRight_toLeftOf="@+id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/img_wind" />
 
         <TextView
             android:id="@+id/tv_wind"
@@ -121,71 +185,187 @@
             app:layout_constraintLeft_toRightOf="@+id/img_wind"
             app:layout_constraintTop_toTopOf="@id/img_wind" />
 
+        <Switch
+            android:id="@+id/sw_wind"
+            android:layout_width="51dp"
+            android:layout_height="35dp"
+            android:checked="true"
+            android:theme="@style/SCBSwitch"
+            app:layout_constraintRight_toLeftOf="@+id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@id/tv_wind" />
+
+        <TextView
+            android:id="@+id/tv_set_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="5dp"
+            android:text="창문 닫기/열기"
+            android:textColor="#222222"
+            android:textSize="12dp"
+            app:layout_constraintRight_toLeftOf="@id/sw_wind"
+            app:layout_constraintTop_toTopOf="@id/sw_wind" />
+
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/img_temperature"
             android:layout_width="66dp"
             android:layout_height="105dp"
-            android:layout_marginStart="10dp"
             android:src="@drawable/temperature"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintLeft_toLeftOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/guideline_Top"
+            app:layout_constraintTop_toTopOf="@id/guideline_top"
             app:layout_constraintVertical_bias="0.63" />
 
-        <Switch
-            android:id="@+id/sw_temperature"
-            android:layout_width="51dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="36dp"
-            android:theme="@style/SCBSwitch"
-            android:checked="true"
-            app:layout_constraintRight_toLeftOf="@+id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/img_temperature" />
-
         <TextView
-            android:id="@+id/tv_temperature"
+            android:id="@+id/tv_temperature_range"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="3dp"
-            android:text="28℃"
+            android:layout_height="45dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="10dp"
+            android:text="~"
             android:textColor="#000000"
             android:textSize="33dp"
             app:layout_constraintLeft_toRightOf="@+id/img_temperature"
             app:layout_constraintTop_toTopOf="@id/img_temperature" />
 
+        <EditText
+            android:id="@+id/ev_temperature_min"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="3dp"
+            android:textColor="#000000"
+            android:hint="25"
+            android:textColorHint="#AAAAAA"
+            android:textSize="24dp"
+            app:layout_constraintRight_toLeftOf="@+id/tv_temperature_range"
+            app:layout_constraintTop_toTopOf="@id/tv_temperature_range" />
+
+        <EditText
+            android:id="@+id/ev_temperature_max"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="3dp"
+            android:textColor="#000000"
+            android:hint="30"
+            android:textColorHint="#AAAAAA"
+            android:textSize="24dp"
+            app:layout_constraintLeft_toRightOf="@+id/tv_temperature_range"
+            app:layout_constraintTop_toTopOf="@id/tv_temperature_range" />
+
+        <TextView
+            android:id="@+id/tv_temperature_end"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="10dp"
+            android:text="℃"
+            android:textColor="#000000"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toRightOf="@+id/tv_temperature_range"
+            app:layout_constraintTop_toTopOf="@id/img_temperature" />
+
+        <Switch
+            android:id="@+id/sw_temperature"
+            android:layout_width="51dp"
+            android:layout_height="35dp"
+            android:checked="true"
+            android:theme="@style/SCBSwitch"
+            app:layout_constraintRight_toLeftOf="@+id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@id/tv_temperature_range" />
+
+        <TextView
+            android:id="@+id/tv_set_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="5dp"
+            android:text="난방 끄기/켜기"
+            android:textColor="#222222"
+            android:textSize="12dp"
+            app:layout_constraintRight_toLeftOf="@id/sw_temperature"
+            app:layout_constraintTop_toTopOf="@id/sw_temperature" />
+
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/img_humidity"
             android:layout_width="66dp"
             android:layout_height="105dp"
-            android:layout_marginStart="10dp"
             android:src="@drawable/humidity"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintLeft_toLeftOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="@id/guideline_Top"
-            app:layout_constraintVertical_bias="0.94" />
+            app:layout_constraintTop_toTopOf="@id/guideline_top"
+            app:layout_constraintVertical_bias="0.93" />
+
+        <TextView
+            android:id="@+id/tv_humidity_range"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="100dp"
+            android:text="~"
+            android:textColor="#000000"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toRightOf="@+id/img_humidity"
+            app:layout_constraintTop_toTopOf="@id/img_humidity" />
+
+        <EditText
+            android:id="@+id/ev_humidity_min"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="3dp"
+            android:textColor="#000000"
+            android:hint="50"
+            android:textColorHint="#AAAAAA"
+            android:textSize="24dp"
+            app:layout_constraintRight_toLeftOf="@+id/tv_humidity_range"
+            app:layout_constraintTop_toTopOf="@id/tv_humidity_range" />
+
+        <EditText
+            android:id="@+id/ev_hymidity_max"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="3dp"
+            android:textColor="#000000"
+            android:hint="70"
+            android:textColorHint="#AAAAAA"
+            android:textSize="24dp"
+            app:layout_constraintLeft_toRightOf="@+id/tv_humidity_range"
+            app:layout_constraintTop_toTopOf="@id/tv_humidity_range" />
+
+        <TextView
+            android:id="@+id/tv_hymidity_end"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="83dp"
+            android:text="%"
+            android:textColor="#000000"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toRightOf="@+id/tv_humidity_range"
+            app:layout_constraintTop_toTopOf="@id/img_humidity" />
 
         <Switch
             android:id="@+id/sw_humidity"
             android:layout_width="51dp"
             android:layout_height="35dp"
-            android:layout_marginTop="36dp"
-            android:theme="@style/SCBSwitch"
+            android:layout_marginTop="43dp"
             android:checked="false"
-            app:layout_constraintRight_toLeftOf="@+id/guideline_left"
+            android:theme="@style/SCBSwitch"
+            app:layout_constraintRight_toLeftOf="@+id/guideline_right"
             app:layout_constraintTop_toTopOf="@id/img_humidity" />
 
         <TextView
-            android:id="@+id/tv_humidity"
+            android:id="@+id/tv_set_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="3dp"
-            android:text="70%"
-            android:textColor="#000000"
-            android:textSize="33dp"
-            app:layout_constraintLeft_toRightOf="@+id/img_humidity"
-            app:layout_constraintTop_toTopOf="@id/img_humidity" />
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="5dp"
+            android:text="분무기 뿌리기"
+            android:textColor="#222222"
+            android:textSize="12dp"
+            app:layout_constraintRight_toLeftOf="@id/sw_humidity"
+            app:layout_constraintTop_toTopOf="@id/sw_humidity" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
@@ -198,9 +378,9 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="3dp"
+            android:layout_marginEnd="3dp"
             android:layout_marginBottom="3dp"
-            android:text="확인"
+            android:text="적용"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintRight_toRightOf="parent" />
 
