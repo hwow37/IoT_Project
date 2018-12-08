@@ -3,19 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.hk.iot_project.viewmodel.MainViewModel" />
-    </data>
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        tools:context=".view.SettingFragment">
+        tools:context=".fragment.SettingFragment">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline_top"
@@ -62,7 +55,7 @@
             app:layout_constraintTop_toTopOf="@id/img_sleeptime" />
 
         <EditText
-            android:id="@+id/ev_sleeptime_min"
+            android:id="@+id/et_sleeptime_min"
             android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginEnd="3dp"
@@ -80,11 +73,11 @@
             android:text="취침 시간을 정해주십시오."
             android:textColor="#333333"
             android:textSize="15dp"
-            app:layout_constraintLeft_toLeftOf="@+id/ev_sleeptime_min"
-            app:layout_constraintTop_toBottomOf="@id/ev_sleeptime_min" />
+            app:layout_constraintLeft_toLeftOf="@+id/et_sleeptime_min"
+            app:layout_constraintTop_toBottomOf="@id/et_sleeptime_min" />
 
         <EditText
-            android:id="@+id/ev_sleeptime_max"
+            android:id="@+id/et_sleeptime_max"
             android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginStart="18dp"
@@ -229,7 +222,7 @@
             app:layout_constraintTop_toTopOf="@id/img_temperature" />
 
         <EditText
-            android:id="@+id/ev_temperature_min"
+            android:id="@+id/et_temperature_min"
             android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
@@ -242,7 +235,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_temperature_range" />
 
         <EditText
-            android:id="@+id/ev_temperature_max"
+            android:id="@+id/et_temperature_max"
             android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginStart="18dp"
@@ -309,7 +302,7 @@
             app:layout_constraintTop_toTopOf="@id/img_humidity" />
 
         <EditText
-            android:id="@+id/ev_humidity_min"
+            android:id="@+id/et_humidity_min"
             android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
@@ -322,7 +315,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_humidity_range" />
 
         <EditText
-            android:id="@+id/ev_hymidity_max"
+            android:id="@+id/et_hymidity_max"
             android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginStart="18dp"
@@ -375,7 +368,7 @@
             app:layout_constraintGuide_end="55dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"

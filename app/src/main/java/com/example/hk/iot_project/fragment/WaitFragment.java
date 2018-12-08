@@ -1,6 +1,5 @@
-package com.example.hk.iot_project.view;
+package com.example.hk.iot_project.fragment;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,31 +11,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.hk.iot_project.R;
-import com.example.hk.iot_project.viewmodel.MainViewModel;
 
-import rx.Observable;
-
-
-public class MainFragment extends Fragment {
+public class WaitFragment extends Fragment {
     private TextView textView;
     public View view;
 
-    private MainViewModel mViewModel;
-    private Observable observable;
 
-    private String str = "this is no data";
-
-    public static MainFragment newInstance() {
-        Log.d("onMainFragment", "iot complete");
-        return new MainFragment();
+    public static WaitFragment newInstance() {
+        Log.d("onMainFragment", "iot complete is failed");
+        return new WaitFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        Log.d("onMainFragment", "iot complete1");
-        view = inflater.inflate(R.layout.main_fragment, container, false);
+        Log.d("onMainFragment", "iot complete is failed1");
+        view = inflater.inflate(R.layout.fragment_wait, container, false);
 
         textView = view.findViewById(R.id.tv_playorsleep);
         return view;
@@ -45,12 +36,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.d("onMainFragment", "iot complete2");
-
-        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        // TODO: Use the ViewModel
-//        sleep(500);
-        mViewModel.setGetDataModel();
+        Log.d("onMainFragment", "iot complete is failed2");
     }
 
     @Override

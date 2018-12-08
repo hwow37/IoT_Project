@@ -3,19 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.hk.iot_project.viewmodel.MainViewModel" />
-    </data>
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        tools:context=".view.MainFragment">
+        tools:context=".fragment.MainFragment">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline_Top"
@@ -41,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:text="onPlaying..."
+            tools:text="onPlaying..."
             android:textColor="#000000"
             android:textSize="25dp"
             app:layout_constraintLeft_toRightOf="@+id/img_playingIs"
@@ -64,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="8dp"
-            android:text="85%"
+            tools:text="85%"
             android:textColor="#000000"
             android:textSize="33dp"
             app:layout_constraintLeft_toRightOf="@+id/img_brights"
@@ -76,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="3dp"
-            android:text="낮의 밝기 입니다."
+            tools:text="낮의 밝기 입니다."
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintLeft_toRightOf="@+id/img_brights"
@@ -99,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="18dp"
-            android:text="환기 중 입니다."
+            tools:text="환기 중 입니다."
             android:textColor="#000000"
             android:textSize="18dp"
             app:layout_constraintLeft_toRightOf="@+id/img_wind"
@@ -122,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="3dp"
-            android:text="28℃"
+            tools:text="28℃"
             android:textColor="#000000"
             android:textSize="33dp"
             app:layout_constraintLeft_toRightOf="@+id/img_temperature"
@@ -134,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="3dp"
-            android:text="적정 온도입니다."
+            tools:text="적정 온도입니다."
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintLeft_toRightOf="@+id/img_temperature"
@@ -146,7 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="3dp"
-            android:text="특별한 조치가 필요하지 않습니다."
+            tools:text="특별한 조치가 필요하지 않습니다."
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintLeft_toRightOf="@+id/img_temperature"
@@ -170,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="3dp"
-            android:text="70%"
+            tools:text="70%"
             android:textColor="#000000"
             android:textSize="33dp"
             app:layout_constraintLeft_toRightOf="@+id/img_humidity"
@@ -182,7 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="3dp"
-            android:text="적정 습도입니다."
+            tools:text="적정 습도입니다."
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintLeft_toRightOf="@+id/img_temperature"
@@ -194,7 +187,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="3dp"
-            android:text="곧 습도 조절이 필요할 수 있습니다."
+            tools:text="곧 습도 조절이 필요할 수 있습니다."
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintLeft_toRightOf="@+id/img_temperature"
@@ -206,5 +199,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_end="55dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent"/>
+
     </android.support.constraint.ConstraintLayout>
 </layout>

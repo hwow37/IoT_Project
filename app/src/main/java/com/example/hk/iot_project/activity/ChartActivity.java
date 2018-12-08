@@ -1,4 +1,4 @@
-package com.example.hk.iot_project.view;
+package com.example.hk.iot_project.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -45,7 +45,7 @@ public class ChartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chart_activity);
+        setContentView(R.layout.activity_char);
 
         Intent intent = getIntent();
 
