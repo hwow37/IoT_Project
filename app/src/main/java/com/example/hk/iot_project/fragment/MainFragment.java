@@ -1,5 +1,6 @@
 package com.example.hk.iot_project.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,49 +28,55 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class MainFragment extends Fragment {
     public View view;
+    private SharedPreferences prefs;
 
     //  UDP연결 관련
-    DatagramPacket packet;
+    private DatagramPacket packet;
     private DatagramSocket socket;
     private InetAddress serverAddr;
     private int sPORT = 8880;
-    private String sIP = "192.168.0.6";
     private byte[] buf;
-
-    // soket Strings
-    private String str1 = "";
-    private String str2 = "";
-    private String str3 = "";
-    private String str4 = "";
 
     // UI 관련
     private TextView tv_playorsleep;
+    private ImageView img_playingIs;
     private TextView tv_brights;
-    private TextView tv_status_brights;
+    private TextView tv_state_brights;
     private TextView tv_wind;
     private TextView tv_temperature;
-    private TextView tv_status_temperature;
-    private TextView tv_status_todo_temperature;
+    private TextView tv_state_temperature;
+    private TextView tv_state_todo_temperature;
     private TextView tv_humidity;
-    private TextView tv_status_humidity;
-    private TextView tv_status_todo_humidity;
-    private ProgressBar progressBar;
+    private TextView tv_state_humidity;
+    private TextView tv_state_todo_humidity;
+    private ProgressBar progressBar_MainFrag;
 
-    // set parseInt
+    // set socketData
+    private int int_playorsleep;
     private int int_brights;
+    private int int_wind;
     private int int_temperature;
     private int int_humidity;
 
     // UI text
     private String str_playorsleep;
-    private String str_status_brights;
+    private String str_state_brights;
     private String str_wind;
-    private String str_status_temperature;
-    private String str_status_todo_temperature;
-    private String str_status_humidity;
-    private String str_status_todo_humidity;
+    private String str_state_temperature;
+    private String str_state_todo_temperature;
+    private String str_state_humidity;
+    private String str_state_todo_humidity;
+
+    // local 변수
+    private String ipAddress;
+    private String temperature_min;
+    private String temperature_max;
+    private String humidity_min;
+    private String humidity_max;
 
     public static MainFragment newInstance() {
         Log.d("onMainFragment", "iot complete");
@@ -82,27 +90,64 @@ public class MainFragment extends Fragment {
         Log.d("onMainFragment", "iot complete1");
         view = inflater.inflate(R.layout.fragment_main, container, false);
 
+
+        // Shares Preference
+        prefs = this.getActivity().getSharedPreferences("IoTguanaSettings", MODE_PRIVATE);
+        ipAddress = prefs.getString("key_ipAddress","192.168.0.6");
+        temperature_min = prefs.getString("key_temperature_min", "25");
+        temperature_max = prefs.getString("key_temperature_max", "30");
+        humidity_min = prefs.getString("key_humidity_min", "50");
+        humidity_max = prefs.getString("key_humidity_max", "70");
+
         tv_playorsleep = view.findViewById(R.id.tv_playorsleep);
+        img_playingIs = view.findViewById(R.id.img_playingIs);
         tv_brights = view.findViewById(R.id.tv_brights);
-        tv_status_brights = view.findViewById(R.id.tv_status_brights);
+        tv_state_brights = view.findViewById(R.id.tv_state_brights);
         tv_wind = view.findViewById(R.id.tv_wind);
         tv_temperature = view.findViewById(R.id.tv_temperature);
-        tv_status_temperature = view.findViewById(R.id.tv_status_temperature);
-        tv_status_todo_temperature = view.findViewById(R.id.tv_status_todo_temperature);
+        tv_state_temperature = view.findViewById(R.id.tv_state_temperature);
+        tv_state_todo_temperature = view.findViewById(R.id.tv_state_todo_temperature);
         tv_humidity = view.findViewById(R.id.tv_humidity);
-        tv_status_humidity = view.findViewById(R.id.tv_status_humidity);
-        tv_status_todo_humidity = view.findViewById(R.id.tv_status_todo_humidity);
-        progressBar = view.findViewById(R.id.progressBar);
+        tv_state_humidity = view.findViewById(R.id.tv_state_humidity);
+        tv_state_todo_humidity = view.findViewById(R.id.tv_state_todo_humidity);
+        progressBar_MainFrag = view.findViewById(R.id.progressBar_MainFrag);
 
         try {
             socket = new DatagramSocket();
-            serverAddr = InetAddress.getByName(sIP);
-            buf = ("thisDataSetIsFullSet000111000111000111").getBytes();
+            serverAddr = InetAddress.getByName(ipAddress);
             packet = new DatagramPacket(buf, buf.length, serverAddr, sPORT);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        receivePacket();
+        transmitPacket();
+
+        return view;
+    }
+
+    public void transmitPacket() {
+        // 테스트용 udp 송신 thread
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    byte[] buf = ("~0~").getBytes();
+                    packet = new DatagramPacket(buf, buf.length, serverAddr, sPORT);
+                    socket.send(packet);
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void receivePacket() {
+        // udp 수신 thread
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -111,6 +156,7 @@ public class MainFragment extends Fragment {
                             @Override
                             public void call(Subscriber<? super String> subscriber) {
                                 try {
+                                    buf = ("000111000111000111000111000111000111000111000111000111000111000111000111000111").getBytes();
                                     packet = new DatagramPacket(buf, buf.length, serverAddr, sPORT);
                                     socket.receive(packet);
                                     String msg = new String(packet.getData());
@@ -136,97 +182,76 @@ public class MainFragment extends Fragment {
 
                             @Override
                             public void onNext(String msg) {
-                                String[] strBase = msg.split("@");
-                                str1 = strBase[1];
-                                str2 = strBase[2];
-                                str3 = strBase[3];
-                                str4 = strBase[5];
+                                String[] strBase = msg.split("~");
+                                int_playorsleep = Integer.parseInt(strBase[1]);
+                                int_brights = Integer.parseInt(strBase[2]);
+                                int_wind = Integer.parseInt(strBase[3]);
+                                int_temperature = Integer.parseInt(strBase[4]);
+                                int_humidity = Integer.parseInt(strBase[5]);
 
                                 setUI();
-                                Log.d("onMainFragment", "onNext : 1." + str1 + " 2." + str2 + " 3." + str3 + " 4." + str4);
                             }
                         });
             }
         }).start();
-
-        // 테스트용 udp 송신 thread
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    buf = ("@this@is@MainFragment@data@27@").getBytes();
-                    packet = new DatagramPacket(buf, buf.length, serverAddr, sPORT);
-                    socket.send(packet);
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                } catch (SocketException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        return view;
     }
 
-    public void setUI(){
-        int_brights = Integer.parseInt(str4);
-        int_temperature = Integer.parseInt(str4);
-        int_humidity = Integer.parseInt(str4);
 
-        if(str4.equals("27")){
+    public void setUI() {
+        if (int_playorsleep == 1) {
             str_playorsleep = "onPlaying...";
-        }else{
-            str_playorsleep = "onSleeping";
+            img_playingIs.setImageResource(R.drawable.onplaying);
+        } else {
+            str_playorsleep = "onSleeping...";
+            img_playingIs.setImageResource(R.drawable.onsleeping);
         }
 
-        if(int_brights >= 70 && int_brights <= 100){
-            str_status_brights = "낮의 밝기 입니다.";
-        }else{
-            str_status_brights = "밤의 밝기 입니다.";
+        if (int_brights >= 19 && int_brights <= 100) {
+            str_state_brights = "낮의 밝기 입니다.";
+        } else {
+            str_state_brights = "밤의 밝기 입니다.";
         }
 
-        if(str4.equals("27")){
+        if (int_wind == 1) {
             str_wind = "환기 중 입니다.";
-        }else{
+        } else {
             str_wind = "창문이 닫혀있습니다.";
         }
 
-        if(int_temperature >= 25 && int_temperature <= 30){
-            str_status_temperature = "적정 온도 입니다.";
-            str_status_todo_temperature = "특별한 조치가 필요하지 않습니다.";
-        }else if(int_temperature < 25){
-            str_status_temperature = "적정 온도가 아닙니다.";
-            str_status_todo_temperature = "스팟을 동작합니다.";
-        }else{
-            str_status_temperature = "적정 온도가 아닙니다.";
-            str_status_todo_temperature = "냉방이 필요합니다.";
+        if (int_temperature >= Integer.parseInt(temperature_min) && int_temperature <= Integer.parseInt(temperature_max)) {
+            str_state_temperature = "적정 온도 입니다.";
+            str_state_todo_temperature = "특별한 조치가 필요하지 않습니다.";
+        } else if (int_temperature < Integer.parseInt(temperature_min)) {
+            str_state_temperature = "적정 온도가 아닙니다.";
+            str_state_todo_temperature = "스팟을 동작하여 온도를 높입니다.";
+        } else {
+            str_state_temperature = "적정 온도가 아닙니다.";
+            str_state_todo_temperature = "창문을 열어 온도를 낮춥니다.";
         }
 
-        if(int_humidity >= 50 && int_humidity <= 70){
-            str_status_humidity = "적정 습도입니다.";
-            str_status_todo_humidity = "특별한 조치가 필요하지 않습니다.";
-        }else if(int_humidity < 50){
-            str_status_humidity = "적정 습도가 아닙니다.";
-            str_status_todo_humidity = "분무기를 뿌려 습도를 높입니다.";
-        }else{
-            str_status_humidity = "적정 습도가 아닙니다.";
-            str_status_todo_humidity = "창문을 열어 환기를 시킵니다.";
+        if (int_humidity >= Integer.parseInt(humidity_min) && int_humidity <= Integer.parseInt(humidity_max)) {
+            str_state_humidity = "적정 습도입니다.";
+            str_state_todo_humidity = "특별한 조치가 필요하지 않습니다.";
+        } else if (int_humidity < Integer.parseInt(humidity_min)) {
+            str_state_humidity = "적정 습도가 아닙니다.";
+            str_state_todo_humidity = "분무기를 뿌려 습도를 높입니다.";
+        } else {
+            str_state_humidity = "적정 습도가 아닙니다.";
+            str_state_todo_humidity = "창문을 열어 환기를 시킵니다.";
         }
 
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar_MainFrag.setVisibility(View.INVISIBLE);
 
         tv_playorsleep.setText(str_playorsleep);
-        tv_brights.setText(int_brights+"%");
-        tv_status_brights.setText(str_status_brights);
+        tv_brights.setText(int_brights + "%");
+        tv_state_brights.setText(str_state_brights);
         tv_wind.setText(str_wind);
-        tv_temperature.setText(int_temperature+"℃");
-        tv_status_temperature.setText(str_status_temperature);
-        tv_status_todo_temperature.setText(str_status_todo_temperature);
-        tv_humidity.setText(int_humidity+"%");
-        tv_status_humidity.setText(str_status_humidity);
-        tv_status_todo_humidity.setText(str_status_todo_humidity);
+        tv_temperature.setText(int_temperature + "℃");
+        tv_state_temperature.setText(str_state_temperature);
+        tv_state_todo_temperature.setText(str_state_todo_temperature);
+        tv_humidity.setText(int_humidity + "%");
+        tv_state_humidity.setText(str_state_humidity);
+        tv_state_todo_humidity.setText(str_state_todo_humidity);
     }
 
     @Override

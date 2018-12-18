@@ -64,7 +64,7 @@
             app:layout_constraintTop_toTopOf="@id/img_brights" />
 
         <TextView
-            android:id="@+id/tv_status_brights"
+            android:id="@+id/tv_state_brights"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -122,7 +122,7 @@
             app:layout_constraintTop_toTopOf="@id/img_temperature" />
 
         <TextView
-            android:id="@+id/tv_status_temperature"
+            android:id="@+id/tv_state_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -134,7 +134,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_temperature" />
 
         <TextView
-            android:id="@+id/tv_status_todo_temperature"
+            android:id="@+id/tv_state_todo_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -143,7 +143,7 @@
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintLeft_toRightOf="@+id/img_temperature"
-            app:layout_constraintTop_toBottomOf="@id/tv_status_temperature" />
+            app:layout_constraintTop_toBottomOf="@id/tv_state_temperature" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/img_humidity"
@@ -170,7 +170,7 @@
             app:layout_constraintTop_toTopOf="@id/img_humidity" />
 
         <TextView
-            android:id="@+id/tv_status_humidity"
+            android:id="@+id/tv_state_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -182,7 +182,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_humidity" />
 
         <TextView
-            android:id="@+id/tv_status_todo_humidity"
+            android:id="@+id/tv_state_todo_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -191,7 +191,7 @@
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintLeft_toRightOf="@+id/img_temperature"
-            app:layout_constraintTop_toBottomOf="@id/tv_status_humidity" />
+            app:layout_constraintTop_toBottomOf="@id/tv_state_humidity" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
@@ -201,7 +201,7 @@
             app:layout_constraintGuide_end="55dp" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBar_MainFrag"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

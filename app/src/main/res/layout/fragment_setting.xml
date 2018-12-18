@@ -315,7 +315,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_humidity_range" />
 
         <EditText
-            android:id="@+id/et_hymidity_max"
+            android:id="@+id/et_humidity_max"
             android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginStart="18dp"
@@ -328,7 +328,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_humidity_range" />
 
         <TextView
-            android:id="@+id/tv_hymidity_end"
+            android:id="@+id/tv_humidity_end"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_marginStart="83dp"
